@@ -35,8 +35,8 @@ public class Csm {
 
         String p12file = "test.p12";
 
-        String signer = "test";
-        String p12pass = "secret";
+        String signer = "alias";
+        String p12pass = "certificatepassword";
 
         Long TicketTime = Long.valueOf(3600000);
 
