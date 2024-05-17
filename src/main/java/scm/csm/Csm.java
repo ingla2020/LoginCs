@@ -4,7 +4,6 @@ import java.time.OffsetDateTime;
 
 import org.apache.axis.components.logger.LogFactory;
 import org.apache.commons.logging.Log;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
