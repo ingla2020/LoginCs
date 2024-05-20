@@ -14,7 +14,7 @@ public class Csm {
     protected static Log log =
             LogFactory.getLog(Csm.class.getName());
 
-    public void afipToken() {
+    public void token() {
 
         OffsetDateTime dfecha = OffsetDateTime.now();
 
@@ -25,12 +25,12 @@ public class Csm {
 
 //       log.info("infra: " + INFRA + " logitud: " + INFRA.length());
 
-        AfipWSAAClientServices.LoginTicketRequest_xml_string = null;
+        LoginClientServices.LoginTicketRequest_xml_string = null;
         String LoginTicketResponse = null;
         String LoginTicketString = null;
-        String endpoint = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms";
+        String endpoint = "url";
         String service = "service";
-        String dstDN = "cn=wsaahomo,o=afip,c=ar,serialNumber=CUIT 33190985365";
+        String dstDN = "cn=cn,o=oo,c=ar,serialNumber=CUIT xxxxxxxxxxx";
 
         String p12file = "test.p12";
 
@@ -40,13 +40,13 @@ public class Csm {
         Long TicketTime = Long.valueOf(3600000);
 
         // Create LoginTicketRequest_xml_cms
-        AfipWSAAClientServices.LoginTicketRequest_xml_string = null;
+        LoginClientServices.LoginTicketRequest_xml_string = null;
 
         byte[] LoginTicketRequest_xml_cms = null;
         try {
-            LoginTicketRequest_xml_cms = AfipWSAAClientServices.create_cms(p12file, p12pass,
+            LoginTicketRequest_xml_cms = LoginClientServices.create_cms(p12file, p12pass,
                     signer, dstDN, service, TicketTime);
-            LoginTicketString = AfipWSAAClientServices.LoginTicketRequest_xml_string;
+            LoginTicketString = LoginClientServices.LoginTicketRequest_xml_string;
 
             System.out.println("LoginTicketString : " + LoginTicketString);
         } catch (Exception e) {
@@ -55,14 +55,14 @@ public class Csm {
 
 
         try {
-            LoginTicketResponse = AfipWSAAClientServices.invoke_wsaa ( LoginTicketRequest_xml_cms, endpoint );
+            LoginTicketResponse = LoginClientServices.invoke_wsaa ( LoginTicketRequest_xml_cms, endpoint );
             System.out.println(LoginTicketResponse);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
 
-        Document doc = AfipWSAAClientServices.convertStringToDocument(LoginTicketResponse);
+        Document doc = LoginClientServices.convertStringToDocument(LoginTicketResponse);
         doc.getDocumentElement().normalize();
 
         //System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
@@ -86,9 +86,6 @@ public class Csm {
             //System.out.println("\nCurrent Element 2 :" + nNode.getNodeName());
 
         }
-
-        //Document docHeader = AfipWSAAClientServices.convertStringToDocument(LoginTicketResponse);
-        //docHeader.getDocumentElement().normalize();
 
         NodeList nheader = doc.getElementsByTagName("header");
 

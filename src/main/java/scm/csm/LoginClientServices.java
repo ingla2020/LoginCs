@@ -40,10 +40,10 @@ import org.apache.axis.encoding.Base64;
 import org.apache.axis.encoding.XMLType;
 
 
-public class AfipWSAAClientServices {
+public class LoginClientServices {
 
     protected static Log log =
-            LogFactory.getLog(AfipWSAAClientServices.class.getName());
+            LogFactory.getLog(LoginClientServices.class.getName());
 
     public static String LoginTicketRequest_xml_string;
 
@@ -174,7 +174,7 @@ public class AfipWSAAClientServices {
 
 
     //
-    // Create XML Message for AFIP wsaa
+    // Create XML Message for wsaa
     //
     public static String create_LoginTicketRequest(String SignerDN, String dstDN, String service, Long TicketTime) {
 

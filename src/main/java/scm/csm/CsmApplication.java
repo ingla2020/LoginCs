@@ -10,7 +10,7 @@ public class CsmApplication {
 		SpringApplication.run(CsmApplication.class, args);
 
 		Csm csm = new Csm();
-		csm.afipToken();
+		csm.token();
 	}
 
 }
