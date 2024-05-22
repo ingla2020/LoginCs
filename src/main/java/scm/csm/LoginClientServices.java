@@ -36,7 +36,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
-import org.apache.axis.encoding.Base64;
+import java.util.Base64;
 import org.apache.axis.encoding.XMLType;
 
 
@@ -146,14 +146,17 @@ public class LoginClientServices {
 //			call.addParameter(paramName, paramq, parameterMode);
             call.setReturnType(XMLType.XSD_STRING);
             call.setTimeout(timeout);
-            LoginTicketResponse = (String) call.invoke(new Object[] { Base64.encode(LoginTicketRequest_xml_cms) });
+            LoginTicketResponse = (String) call.invoke(new Object[] { Base64.getEncoder().encode(LoginTicketRequest_xml_cms) });
 
         } catch (Exception e) {
             log.error("Cinvoke_wsaa servicio : ");
             log.error(e);
             throw e;
         }
-        return (LoginTicketResponse);
+
+        byte[] encoded = Base64.getEncoder().encode(LoginTicketResponse.getBytes());
+        return (new String(encoded));
+
     }
 
 

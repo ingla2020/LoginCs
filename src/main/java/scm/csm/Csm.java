@@ -1,6 +1,7 @@
 package scm.csm;
 
 import java.time.OffsetDateTime;
+import java.util.Base64;
 
 import org.apache.axis.components.logger.LogFactory;
 import org.apache.commons.logging.Log;
@@ -56,7 +57,8 @@ public class Csm {
 
         try {
             LoginTicketResponse = LoginClientServices.invoke_wsaa ( LoginTicketRequest_xml_cms, endpoint );
-            System.out.println(LoginTicketResponse);
+            byte[] decoded = Base64.getDecoder().decode(LoginTicketResponse);
+            System.out.println(new String(LoginTicketResponse));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
